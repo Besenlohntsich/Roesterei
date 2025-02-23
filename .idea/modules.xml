@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Roesterei.iml" filepath="$PROJECT_DIR$/Roesterei.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/libraries/__MACOSX/__MACOSX.iml" filepath="$PROJECT_DIR$/.idea/libraries/__MACOSX/__MACOSX.iml" />
     </modules>
   </component>
 </project>
