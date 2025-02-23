@@ -1,39 +1,46 @@
 import java.util.Scanner;
 
-public static void main(String[] args) {
-    Verwaltung verwaltung = new Verwaltung();
-    boolean running = true;
-    private Scanner scanner;
-    scanner = new Scanner(System.in);
+/**
+ * Die Hauptklasse, die das Programm startet und die Benutzerinteraktion steuert.
+ */
+public class Main {
+    /**
+     * Die Hauptmethode, die das Programm ausführt.
+     * @param args Kommandozeilenargumente (nicht verwendet)
+     */
+    public static void main(String[] args) {
+        Verwaltung verwaltung = new Verwaltung();
+        Scanner scanner = new Scanner(System.in);
+        boolean running = true;
 
-    while (running) {
-        System.out.println("\nBitte wählen Sie eine Option:");
-        System.out.println("1. Kunde hinzufügen");
-        System.out.println("2. Bestellung bearbeiten");
-        System.out.println("3. Getränkeliste anzeigen");
-        System.out.println("4. Beenden");
+        while (running) {
+            System.out.println("\nBitte wählen Sie eine Option:");
+            System.out.println("1. Kunde hinzufügen");
+            System.out.println("2. Bestellung bearbeiten");
+            System.out.println("3. Getränkeliste anzeigen");
+            System.out.println("4. Beenden");
 
-        int choice = verwaltung.scanner.nextInt();
-        verwaltung.scanner.nextLine(); // Verbrauche den Zeilenumbruch
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Verbrauche den Zeilenumbruch
 
-        switch (choice) {
-            case 1:
-                verwaltung.kundeHinzufuegen();
-                break;
-            case 2:
-                verwaltung.bearbeiteBestellung();
-                break;
-            case 3:
-                verwaltung.zeigeGetraenkeListe();
-                break;
-            case 4:
-                running = false;
-                System.out.println("Programm wird beendet.");
-                break;
-            default:
-                System.out.println("Ungültige Auswahl. Bitte versuchen Sie es erneut.");
+            switch (choice) {
+                case 1:
+                    verwaltung.kundeHinzufuegen();
+                    break;
+                case 2:
+                    verwaltung.bearbeiteBestellung();
+                    break;
+                case 3:
+                    verwaltung.zeigeGetraenkeListe();
+                    break;
+                case 4:
+                    running = false;
+                    System.out.println("Programm wird beendet.");
+                    break;
+                default:
+                    System.out.println("Ungültige Auswahl. Bitte versuchen Sie es erneut.");
+            }
         }
+        scanner.close();
     }
-    verwaltung.scanner.close();
 }
-
