@@ -12,6 +12,7 @@ public class Verwaltung {
     private Stack<Rechnung> rechnungsStack;
     private List<Getraenk> getraenkeListe;
     private Scanner scanner;
+    private int rechnungsNummer = 1; // Neue Klassenvariable zur Verfolgung der Rechnungsnummer
 
     /**
      * Konstruktor für die Verwaltungsklasse.
@@ -42,11 +43,11 @@ public class Verwaltung {
         System.out.print("Name des Kunden: ");
         String name = scanner.nextLine();
         System.out.println("Wählen Sie ein Getränk:");
-        zeigeGetraenkeListe();
+        int listSize = zeigeGetraenkeListe();
         int wahl = scanner.nextInt();
         scanner.nextLine(); // Verbrauche den Zeilenumbruch
 
-        if (wahl > 0 && wahl <= getraenkeListe.size()) {
+        if (wahl > 0 && wahl <= listSize) {
             getraenkeListe.toFirst();
             for (int i = 1; i < wahl; i++) {
                 getraenkeListe.next();
@@ -60,7 +61,22 @@ public class Verwaltung {
             System.out.println("Ungültige Wahl. Kunde wird nicht hinzugefügt.");
         }
     }
-
+    /**
+     * Zeigt die aktuelle Getränkeliste an und gibt die Anzahl der Getränke zurück.
+     * @return Die Anzahl der Getränke in der Liste
+     */
+    public int zeigeGetraenkeListe() {
+        System.out.println("Getränkeliste:");
+        getraenkeListe.toFirst();
+        int index = 1;
+        while (getraenkeListe.hasAccess()) {
+            Getraenk g = getraenkeListe.getContent();
+            System.out.println(index + ". " + g.getName() + " - " + g.getPreis() + " Cent");
+            getraenkeListe.next();
+            index++;
+        }
+        return index - 1; // Gibt die Anzahl der Getränke zurück
+    }
     /**
      * Bearbeitet die Bestellung des nächsten Kunden in der Warteschlange.
      */
@@ -84,8 +100,9 @@ public class Verwaltung {
             int betrag = getraenk.getPreis();
             if (kunde.getGeld() >= betrag) {
                 kunde.setGeld(kunde.getGeld() - betrag);
-                Rechnung rechnung = new Rechnung(java.time.LocalDate.now().toString(), rechnungsStack.size() + 1, betrag);
+                Rechnung rechnung = new Rechnung(java.time.LocalDate.now().toString(), rechnungsNummer, betrag);
                 rechnungsStack.push(rechnung);
+                rechnungsNummer++; // Erhöhe die Rechnungsnummer für die nächste Rechnung
                 kunde.setRechnung(rechnung);
                 kunde.setGetraenkErhalten(true);
                 kunde.setGetraenk(getraenk);
@@ -117,18 +134,4 @@ public class Verwaltung {
         return null;
     }
 
-    /**
-     * Zeigt die aktuelle Getränkeliste an.
-     */
-    public void zeigeGetraenkeListe() {
-        System.out.println("Getränkeliste:");
-        getraenkeListe.toFirst();
-        int index = 1;
-        while (getraenkeListe.hasAccess()) {
-            Getraenk g = getraenkeListe.getContent();
-            System.out.println(index + ". " + g.getName() + " - " + g.getPreis() + " Cent");
-            getraenkeListe.next();
-            index++;
-        }
-    }
 }
