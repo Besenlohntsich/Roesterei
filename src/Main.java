@@ -18,10 +18,11 @@ public class Main {
             System.out.println("1. Kunde hinzufügen");
             System.out.println("2. Bestellung bearbeiten");
             System.out.println("3. Getränkeliste anzeigen");
-            System.out.println("4. Beenden");
+            System.out.println("4. Getränkrliste aufüllen");
+            System.out.println("5. Beenden");
 
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Verbrauche den Zeilenumbruch
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -34,6 +35,9 @@ public class Main {
                     verwaltung.zeigeGetraenkeListe();
                     break;
                 case 4:
+                    verwaltung.fuelleKaffeeListeAuf();
+                    break;
+                case 5:
                     running = false;
                     System.out.println("Programm wird beendet.");
                     break;

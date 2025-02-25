@@ -17,7 +17,7 @@ public class Kunde {
     public Kunde(String name, String wunschGetraenk) {
         this.name = name;
         this.wunschGetraenk = wunschGetraenk;
-        this.geld = 0;
+        this.geld = 1000;
         this.getraenkErhalten = false;
     }
 
