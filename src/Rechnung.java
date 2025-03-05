@@ -31,4 +31,8 @@ public class Rechnung {
     public int getBetrag() {
         return betrag;
     }
+    @Override
+    public String toString() {
+        return "Rechnung #" + getNummer() + " vom " + getDatum() + ", Betrag: " + getBetrag() + " Cent";
+    }
 }

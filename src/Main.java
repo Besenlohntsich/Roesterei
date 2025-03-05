@@ -18,8 +18,10 @@ public class Main {
             System.out.println("1. Kunde hinzufügen");
             System.out.println("2. Bestellung bearbeiten");
             System.out.println("3. Getränkeliste anzeigen");
-            System.out.println("4. Getränkrliste aufüllen");
-            System.out.println("5. Beenden");
+            System.out.println("4. Getränkeliste auffüllen");
+            System.out.println("5. Alle Rechnungen anzeigen");
+            System.out.println("6. Alle Kunden in der Warteschlange anzeigen");
+            System.out.println("7. Beenden");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -38,6 +40,12 @@ public class Main {
                     verwaltung.fuelleKaffeeListeAuf();
                     break;
                 case 5:
+                    verwaltung.zeigeAlleRechnungen();
+                    break;
+                case 6:
+                    verwaltung.zeigeAlleKunden();
+                    break;
+                case 7:
                     running = false;
                     System.out.println("Programm wird beendet.");
                     break;

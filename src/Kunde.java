@@ -62,4 +62,8 @@ public class Kunde {
     public void setGetraenk(Getraenk getraenk) {
         this.getraenk = getraenk;
     }
+    @Override
+    public String toString() {
+        return "Kunde: " + getName() + ", Wunschgetränk: " + getWunschGetraenk();
+    }
 }

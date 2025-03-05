@@ -134,4 +134,57 @@ public class Verwaltung {
         return null;
     }
 
+    /**
+     * Gibt alle Rechnungen aus dem Rechnungsstack aus.
+     */
+    public void zeigeAlleRechnungen() {
+        if (rechnungsStack.isEmpty()) {
+            System.out.println("Keine Rechnungen vorhanden.");
+            return;
+        }
+
+        Stack<Rechnung> hilfsStack = new Stack<>();
+        System.out.println("Alle Rechnungen:");
+
+        while (!rechnungsStack.isEmpty()) {
+            Rechnung rechnung = rechnungsStack.top();
+            rechnungsStack.pop();
+            System.out.println(rechnung);
+            hilfsStack.push(rechnung);
+        }
+
+        // Rechnungen zurück in den ursprünglichen Stack transferieren
+        while (!hilfsStack.isEmpty()) {
+            rechnungsStack.push(hilfsStack.top());
+            hilfsStack.pop();
+        }
+    }
+
+    /**
+     * Gibt alle Kunden in der Warteschlange aus.
+     */
+    public void zeigeAlleKunden() {
+        if (kundenQueue.isEmpty()) {
+            System.out.println("Keine Kunden in der Warteschlange.");
+            return;
+        }
+
+        Queue<Kunde> hilfsQueue = new Queue<>();
+        System.out.println("Kunden in der Warteschlange:");
+        int position = 1;
+
+        while (!kundenQueue.isEmpty()) {
+            Kunde kunde = kundenQueue.front();
+            kundenQueue.dequeue();
+            System.out.println(position + ". " + kunde);
+            hilfsQueue.enqueue(kunde);
+            position++;
+        }
+
+        // Kunden zurück in die ursprüngliche Warteschlange transferieren
+        while (!hilfsQueue.isEmpty()) {
+            kundenQueue.enqueue(hilfsQueue.front());
+            hilfsQueue.dequeue();
+        }
+    }
 }
