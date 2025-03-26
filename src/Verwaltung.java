@@ -13,6 +13,8 @@ public class Verwaltung {
     private Scanner scanner;
     private int rechnungsNummer = 1; // Neue Klassenvariable zur Verfolgung der Rechnungsnummer
 
+    private BinarySearchTree<Kundenprofil> KundenBaum;
+
     /**
      * Konstruktor für die Verwaltungsklasse.
      * Initialisiert die Datenstrukturen und füllt die Getränkeliste auf.
@@ -193,7 +195,7 @@ public class Verwaltung {
         }
     }
 
-    public  class Kundenverwaltung {
+
         private BinarySearchTree<Kundenprofil> KundenBaum;
 
         public Kundenverwaltung() {
@@ -215,5 +217,5 @@ public class Verwaltung {
             return KundenBaum.search(suchProfil) != null;
         }
 
-    }
+
 }
