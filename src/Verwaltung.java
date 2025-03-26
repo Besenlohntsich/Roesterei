@@ -1,6 +1,4 @@
-import nrw.Queue;
-import nrw.Stack;
-import nrw.List;
+import nrw.*;
 import java.util.Scanner;
 
 /**
@@ -8,6 +6,7 @@ import java.util.Scanner;
  * Verwaltet Kunden, Bestellungen, Rechnungen und Getränke.
  */
 public class Verwaltung {
+    Kundenverwaltung Kundenverwaltung = new Kundenverwaltung();
     private Queue<Kunde> kundenQueue;
     private Stack<Rechnung> rechnungsStack;
     private List<Getraenk> getraenkeListe;
@@ -56,6 +55,12 @@ public class Verwaltung {
             Kunde neuerKunde = new Kunde(name, gewaehltesGetraenk.getName());
             neuerKunde.setGeld(1000); // Setze Geld auf 1000 Cent
             kundenQueue.enqueue(neuerKunde);
+/**
+            String pBenutzername = name;
+            String pPw="a";
+            Kundenverwaltung.neuenBenutzerAnlegen();
+**/
+
             System.out.println("Kunde " + name + " wurde zur Warteschlange hinzugefügt.");
         } else {
             System.out.println("Ungültige Wahl. Kunde wird nicht hinzugefügt.");
@@ -186,5 +191,29 @@ public class Verwaltung {
             kundenQueue.enqueue(hilfsQueue.front());
             hilfsQueue.dequeue();
         }
+    }
+
+    public  class Kundenverwaltung {
+        private BinarySearchTree<Kundenprofil> KundenBaum;
+
+        public Kundenverwaltung() {
+            KundenBaum = new BinarySearchTree<>();
+        }
+
+        public void neuenBenutzerAnlegen() {
+            Kundenprofil neuerBenutzer = new Kundenprofil(pBenutzername, pPw);
+            KundenBaum.insert(neuerBenutzer);
+        }
+
+        public void nutzerLoeschen(String pBenutzername, String pPw) {
+            Kundenprofil zuLoeschenderBenutzer = new Kundenprofil(pBenutzername, pPw);
+            KundenBaum.remove(zuLoeschenderBenutzer);
+        }
+
+        public boolean profilVorhanden(String pBenutzername) {
+            Kundenprofil suchProfil = new Kundenprofil(pBenutzername, "");
+            return KundenBaum.search(suchProfil) != null;
+        }
+
     }
 }

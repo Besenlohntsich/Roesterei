@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
     /**
      * Die Hauptmethode, die das Programm ausführt.
-     * @param args Kommandozeilenargumente (nicht verwendet)
+     *
      */
     public static void main(String[] args) {
         Verwaltung verwaltung = new Verwaltung();
